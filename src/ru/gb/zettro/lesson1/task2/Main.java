@@ -21,7 +21,7 @@ abstract class Car {
     private String name;
 
     //добавил конструктор
-    public Car(Engine engine, String color, String name) {
+    protected Car(Engine engine, String color, String name) {
         this.engine = engine;
         this.color = color;
         this.name = name;
@@ -32,7 +32,7 @@ abstract class Car {
         System.out.println(name + " is starting");
     }
 
-    //убрал модификатор abstract
+    //убрал модификатор abstract, кому надо - переопределят
     public void open() {
         System.out.println(name + " is opened");
     }
@@ -78,7 +78,7 @@ class LightWeightCar extends Car implements Movable {
         super(engine, color, name);
     }
 
-    // убрал @Override поскольку здесь не идет речь о переопределении метода
+    // убрал @Override, поскольку здесь не идет речь о переопределении метода
     public void move() {
         getEngine().getPower(10000);
         System.out.println(getName() + " is moving");
@@ -111,7 +111,7 @@ abstract class Engine {
     private int maxPower;
     private String name;
 
-    public Engine(int maxPower, String name) {
+    protected Engine(int maxPower, String name) {
         this.maxPower = maxPower;
         this.name = name;
     }
