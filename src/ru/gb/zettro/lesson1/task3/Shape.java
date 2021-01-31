@@ -20,4 +20,5 @@ abstract public class Shape {
         System.out.println("Периметр равен " + getPerimeterLength());
         System.out.println("Площадь равна " + getArea());
     }
+
 }

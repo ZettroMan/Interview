@@ -32,5 +32,4 @@ public class Square extends Shape {
         return sideLen * 4;
     }
 
-
 }
