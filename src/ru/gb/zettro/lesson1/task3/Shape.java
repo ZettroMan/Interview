@@ -1,6 +1,7 @@
 package ru.gb.zettro.lesson1.task3;
 
 abstract public class Shape {
+
     private String name;
     private String color;
 
