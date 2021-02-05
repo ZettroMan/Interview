@@ -5,15 +5,26 @@ import ru.gb.zettro.lesson2.linkedlist.MyLinkedList;
 
 import java.util.NoSuchElementException;
 import java.util.Random;
+import java.util.logging.Formatter;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 public class Main {
-    private final static Logger logger = Logger.getLogger(Main.class.getName());
+    private final static Logger logger = Logger.getLogger("");
+
+    static {
+        logger.getHandlers()[0].setFormatter(new Formatter() {
+            @Override
+            public String format(LogRecord record) {
+                return "\n" + record.getLevel() + "\t" + record.getMessage();
+            }
+        });
+    }
 
     public static void main(String[] args) {
+
         MyList<Integer> myLinkedList = new MyLinkedList<>();
         MyList<Integer> myArrayList = new MyArrayList<>();
-
 
         // Let's run some tests))
         logger.info("=========== TESTING LINKED LIST ============");
@@ -22,16 +33,15 @@ public class Main {
         runTest(myArrayList);
         logger.info("========= RUNNING HARD SYNCHRONOUS TEST ON LINKED AND ARRAY LISTS ==========");
         for (int i = 0; i < 2000; i++) {
-            logger.info("RUN #" + i);
             myLinkedList.clear();
             myArrayList.clear();
             runHardTest(myLinkedList, myArrayList);
             if (myArrayList.size() != myLinkedList.size()) {
-                logger.info("ALARM!!!");
+                logger.info("ALERT!!! LISTS WORKS NOT IDENTICAL!");
                 break;
             }
         }
-        logger.info("\n============= LAST RUN RESULTS ==============");
+        logger.info("============= LAST RUN RESULTS ==============");
         logger.info(myLinkedList.toString());
         logger.info(myArrayList.toString());
     }
@@ -82,18 +92,18 @@ public class Main {
             action = random.nextInt(10);
             value = random.nextInt(1000);
             index = random.nextInt(1000);
-            //System.out.print("\nAction = " + action + "\t\tValue = " + value + "\t\tIndex = " + index);
+            // System.out.print("\nAction = " + action + "\t\tValue = " + value + "\t\tIndex = " + index);
             try {
-               // System.out.print("\nLinkedList: ");
+                // System.out.print("\nLinkedList: ");
                 doAction(myLinkedList, action, value, index);
             } catch (IllegalArgumentException | NoSuchElementException e) {
-               // System.out.print(e.getMessage());
+                // System.out.print(e.getMessage());
             }
             try {
-               // System.out.print("\nArrayList:  ");
+                // System.out.print("\nArrayList:  ");
                 doAction(myArrayList, action, value, index);
             } catch (IllegalArgumentException | NoSuchElementException e) {
-              //  System.out.print(e.getMessage());
+                //  System.out.print(e.getMessage());
             }
         }
 
