@@ -22,7 +22,7 @@ public class Multiplier {
         result = 0;
         CountDownLatch latch = new CountDownLatch(a);
         Lock lock = new ReentrantLock();
-        //creating <a> threads
+        //creating <a> threads (assumes that <a> is not too big)))
         for (int i = 0; i < a; i++) {
             new Thread(() -> {
                 try {
@@ -36,7 +36,7 @@ public class Multiplier {
                 }
             }).start();
         }
-        latch.await();
+        latch.await(); // waiting for all <a> threads to be finished
         return result;
     }
 }
