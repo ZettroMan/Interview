@@ -1,8 +1,6 @@
 package ru.gb.zettro.lesson3.task1;
 
-import static java.lang.Thread.sleep;
-
-public class Main {
+public class Variant1 {
 
     private static final Object mon = new Object();
     private static final boolean PING_TURN = true;
