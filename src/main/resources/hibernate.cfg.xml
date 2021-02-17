@@ -1,0 +1,19 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+	
+   		<property name="connection.url">jdbc:postgresql://localhost:5432/postgres?currentSchema=temp</property> <!-- BD Mane -->
+   		<property name="connection.driver_class">org.postgresql.Driver</property> <!-- DB Driver -->
+   		<property name="connection.username">postgres</property> <!-- DB User -->
+   		<property name="connection.password">admin</property> <!-- DB Password -->
+   		<property name="connection.pool_size">8</property>
+   		<property name="dialect">org.hibernate.dialect.PostgreSQL94Dialect</property> <!-- DB Dialect -->
+		<property name="show_sql">true</property> <!-- Show SQL in console -->
+		<property name="current_session_context_class">thread</property>
+
+		<mapping class="ru.gb.zettro.lesson5.SampleEntity"/>
+	</session-factory>
+</hibernate-configuration>
